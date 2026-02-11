@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Be My Valentine</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Homemade+Apple&family=Special+Elite&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<!-- VHS Scanline Overlay -->
+	<div id="vhs-overlay"></div>
+	<div id="static-noise"></div>
+
+	<!-- Music Player (Fixed Top) -->
+	<div id="music-player">
+		<div class="music-cassette">
+			<div class="cassette-reel left-reel"></div>
+			<div class="cassette-reel right-reel"></div>
+		</div>
+		<div class="music-controls">
+			<span class="music-label">♫ Passenger Seat</span>
+			<button id="play-music" class="music-btn">▶</button>
+			<button id="pause-music" class="music-btn">❚❚</button>
+			<div class="volume-control">
+				<span class="volume-icon" id="volume-icon">🔊</span>
+				<input type="range" id="volume-slider" min="0" max="100" value="70" class="volume-slider">
+			</div>
+		</div>
+	</div>
+
+	<!-- SECTION 1: MAZE GAME (INTRO) -->
+	<section id="maze-section" class="section active">
+		<div class="sparkles" id="sparkles"></div>
+		<div class="vhs-frame">
+			<div class="vhs-header">
+				<span class="rec-indicator">● REC</span>
+				<span class="vhs-title">PLAY ▶</span>
+				<span class="vhs-counter">00:00:00</span>
+			</div>
+			<div class="maze-wrapper">
+				<div id="maze-intro">
+					<div class="vhs-text-glitch" data-text="FIND YOUR WAY TO MY HEART">FIND YOUR WAY TO MY HEART</div>
+					<p class="maze-subtitle">Navigate through the maze to unlock my message</p>
+					<div class="level-selector">
+						<button id="level-1-btn" class="vhs-btn">► EASY</button>
+						<button id="level-2-btn" class="vhs-btn">► MEDIUM</button>
+						<button id="level-3-btn" class="vhs-btn">► HARD</button>
+					</div>
+				</div>
+				<div id="maze-game" style="display:none">
+					<div class="level-info">
+						<span id="current-level">Level 1</span>
+						<button id="restart-maze" class="vhs-btn small">⟲ RESTART</button>
+					</div>
+					<div class="maze-container">
+						<canvas id="maze-canvas"></canvas>
+						<div id="player" class="player"></div>
+					</div>
+					<p class="maze-instructions">Click/drag or use arrow keys to move</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 2: PAPER MESSAGE (After Maze Win) -->
+	<section id="paper-section" class="section">
+		<div class="falling-polaroids" id="falling-polaroids"></div>
+		<div class="paper-container">
+			<div class="paper" id="paper-letter">
+				<div class="paper-texture"></div>
+				<div class="paper-content">
+					<div class="handwriting" id="handwriting-text">
+						<!-- Message will be typed here -->
+					</div>
+				</div>
+				<div class="paper-fold"></div>
+			</div>
+			<button id="continue-to-gallery" class="vhs-btn continue-btn" style="display:none;">Continue to Our Memories ❯</button>
+		</div>
+	</section>
+
+	<!-- SECTION 3: POLAROID GALLERY -->
+	<section id="gallery-section" class="section">
+		<div class="gallery-3d-container">
+			<h2 class="gallery-title">Our Precious Moments</h2>
+			<div class="polaroid-gallery" id="polaroid-gallery">
+				<!-- Polaroids will be added here -->
+			</div>
+			<button id="continue-to-valentine" class="vhs-btn continue-btn">Continue ❯</button>
+		</div>
+	</section>
+
+	<!-- SECTION 4: VALENTINE QUESTION (END) -->
+	<section id="valentine-section" class="section">
+		<div class="ribbons" id="ribbons"></div>
+		<div class="valentine-container">
+			<div class="floating-hearts" id="floating-hearts"></div>
+			<div class="valentine-card-3d">
+				<div class="valentine-card-inner">
+					<div class="valentine-front">
+						<div class="heart-3d"></div>
+						<h2 class="valentine-question">Will You Be My Valentine?</h2>
+						<div class="valentine-buttons">
+							<button id="yes-btn" class="valentine-btn yes-btn">YES ♥</button>
+							<button id="no-btn" class="valentine-btn no-btn">No...</button>
+						</div>
+					</div>
+					<div class="valentine-back">
+						<div class="valentine-photo-back" aria-hidden="true"></div>
+						<div class="celebration">
+							<h2>🎉 YAY! 🎉</h2>
+							<p>I'm the happiest person alive!</p>
+							<div class="heart-burst" id="heart-burst"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Photo Modal -->
+	<div id="photo-modal" class="modal" aria-hidden="true">
+		<div class="modal-content">
+			<button class="modal-close">✕</button>
+			<div class="modal-image-container" id="modal-image-container"></div>
+			<div class="modal-nav">
+				<button id="modal-prev" class="modal-nav-btn">❮</button>
+				<button id="modal-next" class="modal-nav-btn">❯</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
